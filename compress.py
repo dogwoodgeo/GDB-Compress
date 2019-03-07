@@ -13,7 +13,7 @@ import time
 
 
 from arcpy import env
-env.workspace = r"C:\Users\-bjones\AppData\Roaming\ESRI\Desktop10.2\ArcCatalog\SDE@SQL1.sde"
+env.workspace = r"PATH\TO\SDE\CONNECTION\FILE\SDE.sde"
 env.overwriteOutput = True
 
 # Set sde workspace
@@ -21,13 +21,13 @@ sdeWorkspace = env.workspace
 
 # Variables
 versionList = ["SEWERMAN.edits", "GISEDITOR.edits", "SDE.QC"]
-sewerman = r"C:\Users\-bjones\AppData\Roaming\ESRI\Desktop10.2\ArcCatalog\SEWERMAN@SQL1.sde"
-giseditor = r"C:\Users\-bjones\AppData\Roaming\ESRI\Desktop10.2\ArcCatalog\GISEDITOR@SQL1.sde"
-sde = r"C:\Users\-bjones\AppData\Roaming\ESRI\Desktop10.2\ArcCatalog\SDE@SQL1.sde"
+sewerman = r"PATH\TO\SDE\CONNECTION\FILE\SEWERMAN.sde"
+giseditor = r"PATH\TO\SDE\CONNECTION\FILE\GISEDITOR.sde"
+sde = r"PATH\TO\SDE\CONNECTION\FILE\SDE.sde"
 
 
 # Create a text file for logging
-log = open("C:\\Geodatabase Compress\\CompressLog.txt", "a")
+log = open(r"\PATH\TO\LOG.txt", "a")
 log.write("***************************************************************************************************\n")
 
 # Define function for sending email.
@@ -138,8 +138,8 @@ try:
     # Send "success" email.
     successSubj = "Script Completed"
     successContent = "Compress script completed"
-    successPitcher = "Bradley.Jones@lrwu.com"
-    successCatchers = "bradleyglennjones@gmail.com"
+    successPitcher = "email@domain.com"
+    successCatchers = "another.email@domain.com"
     send_email(successPitcher, successCatchers, successSubj, successContent)
 
 except Exception, e:
@@ -149,8 +149,8 @@ except Exception, e:
     # Send email to notify of script failure.
     subj = "Script Failure"
     content = "Compress script failed to complete: " + str(e)
-    pitcher = "Bradley.Jones@lrwu.com"
-    catchers = ["bradleyglennjones@gmail.com", "Mark.Drew@lrwu.com"]
+    pitcher = "email@domain.com"
+    catchers = "another.email@domain.com"
     send_email(pitcher, catchers, subj, content)
 
 log.close()
